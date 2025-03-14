@@ -1,4 +1,4 @@
-import {SpiralPlugin} from "@spiral/plugin";
+import {SpiralPlugin} from "@spiral/plugin/src/index";
 import SampleUI from "./ui";
 
 export class SamplePlugin extends SpiralPlugin<{}> {
@@ -9,3 +9,4 @@ export class SamplePlugin extends SpiralPlugin<{}> {
   }
 
 }
+

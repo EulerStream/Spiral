@@ -2,8 +2,6 @@ import {StorageEnum} from '../base/enums';
 import {createStorage} from '../base/base';
 import type {BaseStorage} from '../base/types';
 
-export type TikTokUserSession = { uid: string, lastUpdated: string };
-
 export interface TikTokCookies {
   [key: string]: string | undefined;
 

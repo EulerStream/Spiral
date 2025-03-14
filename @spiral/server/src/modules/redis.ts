@@ -1,4 +1,7 @@
 import RedisClient, {RedisOptions} from "ioredis";
+import {configDotenv} from "dotenv";
+
+configDotenv();
 
 const ConnectOptions: RedisOptions = {
   host: process.env.REDIS_HOST,

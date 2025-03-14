@@ -19,8 +19,8 @@ importers:
         version: 18.3.1
     devDependencies:
       '@spiral/plugin':
-        specifier: file:../../@spiral/plugin
-        version: '@euler-spiral/plugin@file:../../@spiral/plugin'
+        specifier: file:../../plugin
+        version: file:../../plugin
       '@types/chrome':
         specifier: ^0.0.270
         version: 0.0.270
@@ -350,9 +350,6 @@ packages:
     cpu: [x64]
     os: [win32]
 
-  '@euler-spiral/plugin@file:../../@spiral/plugin':
-    resolution: {directory: ../../@spiral/plugin, type: directory}
-
   '@jridgewell/sourcemap-codec@1.5.0':
     resolution: {integrity: sha512-gv3ZRaISU3fjPAgNsriBRqGWQL6quFx04YMPW/zD8XMLsU32mhCCbfbO6KZFLjvYpCZ8zyDEgqsgf+PwPaM7GQ==}
 
@@ -450,6 +447,9 @@ packages:
     resolution: {integrity: sha512-PIQeY5XDkrOysbQblSW7v3l1MDZzkTEzAfTPkj5VAu3FW8fS4ynyLg2sINp0fp3SjZ8xkRYpLqoKcYqAkhU1dw==}
     cpu: [x64]
     os: [win32]
+
+  '@spiral/plugin@file:../../plugin':
+    resolution: {directory: ../../plugin, type: directory}
 
   '@swc/core-darwin-arm64@1.11.8':
     resolution: {integrity: sha512-rrSsunyJWpHN+5V1zumndwSSifmIeFQBK9i2RMQQp15PgbgUNxHK5qoET1n20pcUrmZeT6jmJaEWlQchkV//Og==}
@@ -869,10 +869,6 @@ snapshots:
   '@esbuild/win32-x64@0.25.1':
     optional: true
 
-  '@euler-spiral/plugin@file:../../@spiral/plugin':
-    dependencies:
-      react: 18.3.1
-
   '@jridgewell/sourcemap-codec@1.5.0': {}
 
   '@rollup/rollup-android-arm-eabi@4.35.0':
@@ -931,6 +927,10 @@ snapshots:
 
   '@rollup/rollup-win32-x64-msvc@4.35.0':
     optional: true
+
+  '@spiral/plugin@file:../../plugin':
+    dependencies:
+      react: 18.3.1
 
   '@swc/core-darwin-arm64@1.11.8':
     optional: true

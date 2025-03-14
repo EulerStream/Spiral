@@ -14,7 +14,7 @@ function debugErrors(errors: any) {
 
 }
 
-export class SocketManager {
+export class AgentSocketManager {
 
   // WebSockets
   private webSockets: Record<string, WebSocket> = {};

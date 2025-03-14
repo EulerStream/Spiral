@@ -9,6 +9,7 @@ import Settings from "@src/app/Settings";
 import AutoModerator from "@src/app/tools/AutoModerator";
 import LiveKioskForm from "@src/app/tools/kiosk/LiveKioskForm";
 import LiveKiosk from "@src/app/tools/kiosk/LiveKiosk";
+import Stream from "@src/app/Stream";
 
 const element = document.querySelector("#app-container")!;
 const root = createRoot(element);
@@ -23,6 +24,18 @@ root.render(
                   title={"Dashboard"}
                   description={"Euler Spiral Dashboard Home"} element={<Home/>}
               />}
+        />
+        <Route
+            path={"/stream/:uniqueId"}
+            element={
+              <PageLayout
+                  title={"Stream"}
+                  description={"TikTok LIVE Stream"} element={<Stream/>}
+              />}
+        />
+        <Route
+            path={"/tools/live-kiosk/:uniqueId"}
+            element={<LiveKiosk/>}
         />
         <Route
             path="/plugins"
