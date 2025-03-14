@@ -1,0 +1,16 @@
+{
+  "extends": "@extension/tsconfig/base",
+  "compilerOptions": {
+    "moduleResolution": "Bundler",
+    "baseUrl": "./",
+    "paths": {
+      "@src/*": [
+        "src/*"
+      ]
+    },
+    "types": [
+      "chrome",
+      "../../vite-env.d.ts"
+    ]
+  }
+}

@@ -7,7 +7,7 @@ import {AddPopupRedirect} from "@src/background/scripts/popup-redirect";
 
 const messageProxy = new BackgroundMessageProxy();
 
-AddModifyCspRule();
 AddStoreUserProfileListener(messageProxy);
+AddModifyCspRule();
 AddStoreUserTikTokCookiesListener();
 AddPopupRedirect();
