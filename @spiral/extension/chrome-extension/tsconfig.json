@@ -1,0 +1,16 @@
+{
+  "extends": "@extension/tsconfig/app",
+  "compilerOptions": {
+    "baseUrl": "./",
+    "paths": {
+      "@src/*": ["src/*"]
+    }
+  },
+  "include": [
+    "src",
+    "utils",
+    "vite.config.mts",
+    "../node_modules/@types",
+    "vite-env.d.ts"
+  ]
+}

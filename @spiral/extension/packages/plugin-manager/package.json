@@ -1,0 +1,31 @@
+{
+  "name": "@extension/plugin-manager",
+  "version": "0.3.6",
+  "description": "chrome extension - plugins",
+  "private": true,
+  "sideEffects": false,
+  "files": [
+    "dist/**"
+  ],
+  "main": "./dist/index.js",
+  "types": "index.ts",
+  "scripts": {
+    "clean:bundle": "rimraf dist",
+    "clean:node_modules": "pnpx rimraf node_modules",
+    "clean:turbo": "rimraf .turbo",
+    "clean": "pnpm clean:bundle && pnpm clean:node_modules && pnpm clean:turbo",
+    "ready": "node build.mjs",
+    "lint": "eslint ",
+    "lint:fix": "pnpm lint --fix",
+    "prettier": "prettier  --write --ignore-path ../../.prettierignore",
+    "type-check": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@extension/storage": "workspace:*",
+    "jszip": "^3.10.1",
+    "zod": "^3.24.2"
+  },
+  "devDependencies": {
+    "@extension/tsconfig": "workspace:*"
+  }
+}

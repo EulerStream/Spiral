@@ -1,0 +1,14 @@
+{
+  "extends": "@extension/tsconfig/utils",
+  "compilerOptions": {
+    "baseUrl": "./",
+    "outDir": "dist",
+    "types": ["chrome"],
+    "declaration": true,  // This line is added to generate .d.ts files
+    "emitDeclarationOnly": true  // Ensures only declaration files are emitted
+  },
+  "include": [
+    "index.ts",
+    "lib/**/*"
+  ]
+}

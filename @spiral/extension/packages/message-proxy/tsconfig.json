@@ -1,0 +1,15 @@
+{
+  "extends": "@extension/tsconfig/utils",
+  "compilerOptions": {
+    "baseUrl": "./",
+    "outDir": "dist",
+    "declaration": true,
+    "declarationMap": true,
+    "emitDeclarationOnly": true,
+    "types": ["chrome"]
+  },
+  "include": [
+    "index.ts",
+    "lib"
+  ]
+}

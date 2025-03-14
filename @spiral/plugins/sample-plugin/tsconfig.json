@@ -1,0 +1,26 @@
+{
+  "compilerOptions": {
+    "outDir": "./build/dist",
+    "rootDir": "src",
+    "baseUrl": "./",
+    "allowJs": true,
+    "module": "esnext",
+    "downlevelIteration": true,
+    "isolatedModules": true,
+    "strict": true,
+    "noImplicitAny": true,
+    "strictNullChecks": true,
+    "moduleResolution": "node",
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "resolveJsonModule": true,
+    "noImplicitReturns": true,
+    "jsx": "react-jsx",
+    "lib": ["DOM", "ESNext"]
+  },
+  "include": [
+    "src"
+  ]
+}
