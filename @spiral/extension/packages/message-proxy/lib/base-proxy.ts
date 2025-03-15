@@ -19,7 +19,7 @@ export abstract class BaseMessageProxy extends EventEmitter {
 
   public abstract onUnmount(): void;
 
-  abstract emit(type: string, to: ProxyEventSource, data: any): boolean;
+  abstract emit(type: string, to: ProxyEventSource, data: any, specificHosts: string[] | undefined): boolean;
 
   on(type: string | number, listener: ProxyListener): this {
     return super.on(type, listener);

@@ -1,0 +1,49 @@
+---
+title: Rate Limits
+description: Information about Sign Server rate limiting.
+---
+
+## Standard Limits
+
+The sign server is the REST API responsible for generating the WebSocket URL needed for TikTokLive and
+its sister libraries to connect to livestream rooms and read events.
+
+To prevent spam, a **dynamically calculated** rate limit is in place.
+If you exceed the limit, you will receive an error code 429 from the API,
+and within TikTokLive, a rate limit error.
+
+For example, with the Python library, a `SignatureRateLimitReachedException`.
+Clearly named, it means you are requesting the API too much. Headers in the 429 response will dictate
+how long you should wait before requesting the server again. Use them to optimize your scheduling.
+
+The current rate limits for anonymous connections are as follows:
+
+<iframe src="https://tiktok.eulerstream.com/webcast/rate_limits" style={{marginTop: "15px", maxWidth: "600px", width: "90%"}}/>
+
+## Increased Limits
+
+There are two options for increasing your limits:
+
+1. Free Increases
+2. Paid Increases
+
+We operate the service on a not-explicitly-for-profit-but-a-little-doesn't-hurt model. You can access our API for free
+with or without an API key. If you don't have an API key, you can increase your limit for free by signing up for one.
+
+You can purchase [paid plans](/pricing) for an even higher rate limit.
+
+## Why We Offer Paid Plans
+
+The Sign Server costs a LOT to run. We've got to pay for:
+
+- Our Website
+- Our Load Balancer
+- Our Databases
+- Our API Servers
+- Our Signature Generation
+- Cloudflare
+- Proxies
+- ...and a lot more
+
+Remember, this is a 1-person company. I can't shoulder that burden. Not to mention the hundreds of hours
+it took to build this service, and the hundreds more it takes to maintain it. As it is, it is barely profitable.

@@ -1,0 +1,52 @@
+---
+title: Using API Keys in C# / Unity
+description: How to use the Euler Stream API keys in the C# / Unity library.
+---
+
+## Prerequisites
+
+1. You have signed up for an Euler Stream account.
+2. You have created an API key in the Euler Stream dashboard.
+3. You have installed the [`TikTokLiveSharp`](https://github.com/frankvHoof93/TikTokLiveSharp) library.
+
+
+## How to Use
+
+To use the Euler Stream API keys in the C# / Unity library, you need to set the API key config in the `ClientSettings` struct.
+Here's an example hello-world script demonstrating this:
+
+```csharp
+using TikTokLiveSharp.Client;
+using TikTokLiveSharp.Client.Config;
+using TikTokLiveSharp.Events;
+
+namespace TikTokLiveSharpWPFTestApp
+{
+    public partial class MainWindow : Window
+    {
+        public MainWindow()
+        {
+            InitializeComponent();
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            TikTokLiveClient client = new TikTokLiveClient(inputHostId.Text, "", new ClientSettings()
+            {
+                SigningKey = "YOUR_API_KEY"
+            });
+            client.OnJoin += Client_OnJoin;
+            client.Run(new System.Threading.CancellationToken());
+        }
+
+        private static void Client_OnJoin(TikTokLiveClient sender, Join e)
+        {
+            SetConsoleColor(ConsoleColor.Green);
+            Console.WriteLine($"{e.User.UniqueId} joined!");
+            SetConsoleColor(ConsoleColor.White);
+        }
+
+    }
+}
+
+```

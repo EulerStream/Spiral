@@ -1,0 +1,56 @@
+---
+title: The Legality of Scraping TikTok LIVE
+description: A summary of my research on the legality of scraping TikTok LIVE data.
+---
+
+<strong className="bg-primary text-background p-2 rounded-lg">This is NOT legal advice! For reliable legal information, consult a lawyer.</strong>
+
+
+### The Problem: Data Access
+
+TikTok is owned by ByteDance, a Chinese company. Whether you subscribe to the belief that
+TikTok is influenced by the Chinese government, the fact of the matter is that of all of the major social media
+companies operating in the west, TikTok, owned by a Chinese company, provides the least open data access to its
+consumers, partners, and entrepreneurs working within its ecosystem. To utilize TikTok data, users must
+employ a data retrieval technique known as web-scraping.
+
+### Scraping: A Grey Area
+
+Scraping is the act of programatically retrieving data, often in bulk, from websites. Doing so is important for researchers,
+businesses, and entrepreneurs, but opens up a can of worms involving intellectual property, privacy, and security.
+
+Shockingly (or perhaps not so shockingly), there aren't any specific laws in the USA with regards to scraping.
+Instead, the current legal landscape seems to be a mishmash of case law with regards to the Computer Fraud and Abuse Act (CFAA),
+a federal law that makes it illegal to access a computer without authorization.
+
+As of 2025, scraping seems to be generally acceptable **if the data is publicly accessible**. That means that as long as you aren't
+logging into an account to access the information, it is generally considered legal to scrape content you can publicly access
+and are not violating some other law (i.e. intellectual property law).
+
+This seems to be backed up by 2 recent cases:
+
+- [Meta v BrightData (Feb. 2024)](https://techcrunch.com/2024/02/26/meta-drops-lawsuit-against-web-scraping-firm-bright-data-that-sold-millions-of-instagram-records/)
+- [LinkedIn v hiQ (April 2022)](https://www.socialmediatoday.com/news/linkedin-loses-latest-appeal-in-ongoing-data-scraping-case/622333/)
+
+What this does NOT mean is that you have the legal right to scrape any and all data. Videos and LIVEs on TikTok are the intellectual
+property of the creator and TikTok. Scraping them and redistributing them outside of TikTok is often a violation of copyright law.
+
+Scraping your OWN videos and LIVEs, however, *should* be fine. Scraping videos wherein you have the express permission of the
+creator should also be fine. In my opinion, the best way to isolate yourself from legal concerns would be to implement
+a system that requires the user to provide express authorization to scrape their public data.
+
+WITH THAT SAID, if you are a company, consult a lawyer. None of this is legal advice, it's speculation based on my personal research & conversations with developers.
+
+### The Takeaway
+
+The TikTokLive libraries, while not affiliated with Euler Stream, use our service to generate URLs they can use to
+access public TikTok LIVE data. They are intended to be used by creators, developers, and entrepreneurs to build tools and integrations
+with data *they have the intellectual property rights to*.
+
+Euler Stream does not endorse copyright violation and/or spam. You should always get permission before interacting with someone else's content.
+The TikTok LIVE libraries are designed to be used WITHOUT logging in so as to keep you, the reader, in a legally safe position.
+
+Scraping law is confusing, and it's always best to consult a lawyer if you're unsure about the legality of your actions,
+especially if you will be deriving commercial benefit from them.
+
+Be safe, and good luck!

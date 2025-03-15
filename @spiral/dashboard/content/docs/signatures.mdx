@@ -1,0 +1,55 @@
+---
+title: Why do you need us?
+description: An introduction to the concept of signatures and why they are necessary for connecting to TikTok.
+---
+
+## What is a signature?
+
+A signature is a unique digital fingerprint that verifies the authenticity and integrity of requests made to TikTok. These signatures appear as [query parameters](https://en.wikipedia.org/wiki/Query_string) in all API requests on TikTok.
+
+If a signature is incorrectly formatted or not provided, TikTok will reject the request to whatever URL you are trying to read from as they will identify you as malicious website traffic and not an actual customer using their website.
+
+## Where do signatures come from?
+
+The Euler Stream service **generates** signatures for users. Third-party libraries can use them to connect to TikTok's LIVE API directly.
+This is good for you as it means you can access the [authoritative data source](https://www.directives.doe.gov/terms_definitions/authoritative-data-source) directly.
+It's good for us too, because Euler Stream is a 1-person company, barely profitable, and can't afford the potential legal ramifications of you accidentally or maliciously accessing TikTok data in a way that
+violates US law. We want you to do things legally and this model ensures YOU are solely responsible for data you scrape.
+
+There are a number of other benefits & drawbacks to the current system:
+
+### Benefits
+
+1. If TikTok make a change that breaks signature generation, no library update is needed by you, we just fix the API.
+2. Our method for generating signatures is private, even to TikTok, keeping it reliable for long-term usage.
+3. Our library does not put TikTok at risk of mass data harvesting, because we heavily restrict what URLs we sign.
+4. We limit abuse. Spammers are blocked from the service, keeping it reliable for you.
+
+### Drawbacks
+
+1. The service relies on open source libraries. If they break, they're not ours, we can't fix them.
+2. It's a one-person company, and it doesn't make much money, so it's just one person maintaining it.
+3. We become arbiters of what is and is not acceptable use, which is a difficult position to be in.
+
+Since adopting a closed source model to signing in 2022, TikTok have not attempted to block any TikTok LIVE library.
+When they did, they constantly updated their security as often as twice per week. This became un-maintainable for library
+developers and community members.
+
+For this reason, the sign server **will never** be open source. If you want full control over signature generation, that is totally valid, and you should 100% make your own.
+
+## Retrieving Signatures
+
+The "Sign Server" as we call it generates signatures for you to connect to TikTok LIVE. The TikTok LIVE libraries request
+`https://tiktok.eulerstream.com`. The "Sign Server" is a RESTful API capable of generating signatures for you to connect to TikTok LIVE.
+
+## Generating Your OWN Signatures
+
+All TikTok LIVE libraries currently support the use of **your own** signature server.
+This means you can use the Open Source libraries and connect them to YOUR OWN signature generation API.
+Anyone can do this if they can figure out how to generate valid signatures.
+
+Companies basing themselves off of this library are heavily recommended to rely on their own signature generation.
+Reverse-engineering the signatures necessary is not hard and companies can hire individuals on software contracting
+sites such as [Upwork](https://www.upwork.com/) to do it for relatively cheap.
+
+Information on how to generate signatures is available in the [Sign Server documentation](/docs/sign-server/custom-sign-server).

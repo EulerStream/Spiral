@@ -6,7 +6,6 @@ import {ProxyEventSource, ProxyMessagePacket} from '@extension/message-proxy/lib
 import SpiralLogo from './assets/SpiralLogo.png';
 import {attemptNavButtonInjection} from "@src/scripts/nav-button-injection";
 
-const messageProxy = new ContentMessageProxy();
 
 function injectSpiral(container: Element) {
 
@@ -83,8 +82,11 @@ function attemptInjection(event?: ProxyMessagePacket<{ url: string }>) {
   injectSpiral(container);
 }
 
-messageProxy.on("tiktok-page-change", attemptNavButtonInjection);
-messageProxy.emit('content-ui-loaded', ProxyEventSource.INJECTED, {});
-messageProxy.on("tiktok-page-change", attemptInjection);
-attemptInjection();
-attemptNavButtonInjection();
+if (window.location.href.includes('tiktok.com')) {
+  const messageProxy = new ContentMessageProxy();
+  messageProxy.on("tiktok-page-change", attemptNavButtonInjection);
+  messageProxy.emit('content-ui-loaded', ProxyEventSource.INJECTED, {});
+  messageProxy.on("tiktok-page-change", attemptInjection);
+  attemptInjection();
+  attemptNavButtonInjection();
+}

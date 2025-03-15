@@ -1,7 +1,7 @@
 /**
  * Injects the inject.js script into the page
  */
-import {ContentMessageProxy} from "@extension/message-proxy/dist/lib";
+import {ContentMessageProxy} from "@extension/message-proxy/lib";
 
 (async function () {
   const injectScript = document.createElement("script");

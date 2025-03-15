@@ -11,6 +11,7 @@ const Stream = () => {
     window.location.href = getPath('/');
     return;
   }
+
   const uniqueIdStripped = uniqueId?.replace(/^@/, '');
   document.title = `Spiral | ${uniqueId}`
   document.body.style.backgroundColor = 'black';
@@ -19,8 +20,6 @@ const Stream = () => {
       <div className={"w-[100%] h-[100%] bg-black text-white"}>
         <WebRTCComponent/>
         {/*
-
-
         <LiveVideoEmbed
             uniqueId={uniqueIdStripped}
             includeComments={params.get('comments') === '1'}

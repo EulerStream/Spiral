@@ -10,7 +10,7 @@ export class InjectedMessageProxy extends BaseMessageProxy {
 
   /** Injected -> Content -> ? */
   emit(type: string, to: ProxyEventSource, data: any): boolean {
-    const messagePacket: ProxyMessagePacket = {
+    const messagePacket: ProxyMessagePacket<any> = {
       from: ProxyEventSource.INJECTED,
       to: to,
       type: type,
@@ -21,7 +21,7 @@ export class InjectedMessageProxy extends BaseMessageProxy {
       throw new Error("InjectedMessageProxy cannot emit messages to itself!")
     }
 
-    window.postMessage(messagePacket, "https://www.tiktok.com");
+    window.postMessage(messagePacket, "*");
     return true;
   }
 
@@ -32,7 +32,7 @@ export class InjectedMessageProxy extends BaseMessageProxy {
       return;
     }
 
-    const messagePacket = event.data as ProxyMessagePacket;
+    const messagePacket = event.data as ProxyMessagePacket<any>;
     EventEmitter.prototype.emit.call(this, messagePacket.type, messagePacket);
   }
 

@@ -1,4 +1,3 @@
-import {configDotenv} from "dotenv";
 import {AgentSocketManager} from "./modules/agent-manager";
 import express, {Request, Response} from "express";
 import {createServer} from "http";

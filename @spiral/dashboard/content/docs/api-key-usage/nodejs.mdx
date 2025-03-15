@@ -1,0 +1,37 @@
+---
+title: Using API Keys in Node.JS
+description: How to use the Euler Stream API keys in the 3rd-party Node.JS library.
+---
+
+## Prerequisites
+
+1. You have signed up for an Euler Stream account.
+2. You have created an API key in the Euler Stream dashboard.
+3. You have installed the [`TikTok-Live-Connector`](https://github.com/zerodytrash/TikTok-Live-Connector) Node.JS library.
+
+
+## How to Use
+
+To use the Euler Stream API keys in the Node.JS library, you need to set the API key config setting before instantiating the client instance.
+Here's an example hello-world script demonstrating this:
+
+```javascript
+const { WebcastPushConnection, signatureProvider } = require('tiktok-live-connector');
+
+// Set the API key
+signatureProvider.config.extraParams.apiKey = Config.TIKTOK_CONNECTOR_API_KEY || "";
+
+// Create a new client instance
+let client = new WebcastPushConnection("tv_asahi_news");
+
+// Connect to the chat (await can be used as well)
+client.connect()
+    .then(state => console.info(`Connected to Room ID ${state.roomId}`)
+    .catch(err => console.error('Failed to connect', err));
+
+// Define the events that you want to handle
+client.on(
+    'chat',
+    (data) => console.log(`${data.uniqueId} (userId:${data.userId}) -> ${data.comment}`)
+);
+```

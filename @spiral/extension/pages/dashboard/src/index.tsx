@@ -10,9 +10,11 @@ import AutoModerator from "@src/app/tools/AutoModerator";
 import LiveKioskForm from "@src/app/tools/kiosk/LiveKioskForm";
 import LiveKiosk from "@src/app/tools/kiosk/LiveKiosk";
 import Stream from "@src/app/Stream";
+import {reportPageChange} from "@src/report-page-change";
 
 const element = document.querySelector("#app-container")!;
 const root = createRoot(element);
+reportPageChange();
 
 root.render(
     <BrowserRouter>

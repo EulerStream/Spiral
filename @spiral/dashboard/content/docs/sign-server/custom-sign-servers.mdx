@@ -1,0 +1,122 @@
+---
+title: Custom Sign Servers
+description: Basic guidance on creating a custom signature server for TikTokLive libraries.
+---
+
+Is it possible to create a custom server for the TikTokLive libraries? Yes! This guide gives basic guidance on how.
+We know that this hurts our business, but we believe in the power of open source and the freedom to choose.
+
+All libraries as of `August 21st, 2024` implement a specific signature endpoint. If you replicate this endpoint, you can use the libraries with your own signature server.
+
+## Generating Signatures
+
+Unfortunately, we cannot provide a guide on how to generate signatures. This is because the signature generation is proprietary and is not open source.
+We are happy to help you implement the signature endpoint, but we cannot provide the code for it.
+
+## The `/webcast/fetch` endpoint
+
+First and foremost you need to implement the `/webcast/fetch` endpoint. This endpoint is responsible for generating the signature for the TikTok WebSocket server and embedding it in a protobuf payload.
+
+The expected response type is a **generated** protobuf byte-stream. You can grab this from TikTok instead of generating it yourself by generating a URL & applying a signature to it.
+
+Required Signature Parameters:
+
+- `X-Bogus`
+- `_signature`
+- `msToken`
+
+Verified Parameters:
+
+- `browser_name` (Query)
+- `browser_version` (Query)
+- `User-Agent` (Header)
+
+If you do not provide a User-Agent that matches the browser name and version, TikTok will reject your request.
+
+Here is a basic example of how to fetch the protobuf from TikTok:
+
+```js
+  const parameters = {
+    "device_id": "GENERATE_ME",  // Random 19 digit number
+    "email": "your@email.com", // Your email
+    "room_id": "1234567890", // The room ID
+    "X-Bogus": "GENERATE_ME", // X-Bogus Signature
+    "_signature": "GENERATE_ME", // _signature Signature
+    "msToken": "GENERATE_ME" // msToken Signature
+    "browserName": "BROWSER_NAME",
+    "browserVersion": "BROWSER_VERSION",
+    "userAgent": "USER_AGENT"
+  };
+
+  // Returns protobuf
+  const fetchResult = await fetch(`
+    https://webcast.us.tiktok.com/webcast/im/fetch/
+    ?aid=1988
+    &app_language=en
+    &app_name=tiktok_web
+    &browser_language=en-US
+    &browser_online=true
+    &cookie_enabled=true
+    &cursor=
+    &debug=false
+    &device_platform=web
+    &did_rule=3
+    &fetch_rule=1
+    &history_comment_count=6
+    &history_comment_cursor=
+    &identity=audience
+    &internal_ext=
+    &last_rtt=0
+    &live_id=12
+    &resp_content_type=protobuf
+    &screen_height=1920
+    &screen_width=1080
+    &sup_ws_ds_opt=1
+    &tz_name=UTC
+    &version_code=270000
+    &notice=CUSTOM_SIGN_SERVER
+    &device_id=${parameters["device_id"]}
+    &room_id=${parameters['room_id']}
+    &contact_us=${parameters["email"]}
+    &X-Bogus=${parameters["X-Bogus"]}
+    &_signature=${parameters["_signature"]}
+    &msToken=${parameters["msToken"]}
+    &browser_name=${parameters["browserName"]}
+    &browser_version=${parameters["browserVersion"]}
+  `,
+    {
+        method: "GET",
+        headers: {
+        "User-Agent": parameters["userAgent"],
+        }
+    });
+  );
+
+```
+
+Once you've managed to reverse-engineer a signature method & fetch the protobuf, you can return this from the `/webcast/fetch` endpoint of your custom server.
+
+## The `/sign_url` endpoint
+
+This endpoint is a legacy endpoint that is no longer used by most of the TikTokLive libraries. It is only in use by the Node.JS library.
+You must make this endpoint return a JSON object with the following properties:
+
+
+```json
+ {
+    "code": 200,
+    "message": "Successful",
+
+    // The Node.JS client will use the response from your fetch endpoint.
+    "signedUrl": "https://your-sign-server/webcast/fetch",
+
+    "browserVersion": "BROWSER_VERSION", // The browser version you use in the fetch request
+    "browserName": "BROWSER_NAME", // The browser name you use in the fetch request
+    "User-Agent": "USER_AGENT", // The user agent you use in the fetch request
+
+    // Your signatures should be empty because this is a deprecated endpoint.
+    "_signature": "",
+    "X-Bogus": "",
+    "msToken": "",
+}
+```

@@ -1,16 +1,17 @@
 import {BaseMessageProxy, ProxyEventSource, ProxyMessagePacket} from "../base-proxy";
 import {EventEmitter} from "events";
 import Logger from "@extension/shared/dist/lib/logger";
+import {matchHostnameToPatterns} from "../utilts";
 
 export class BackgroundMessageProxy extends BaseMessageProxy {
 
   constructor() {
     super();
     chrome.runtime.onMessage.addListener(this.receiveProxiedMessage.bind(this));
-    Logger.info('Logger script loaded BackgroundMessageProxy');
+    Logger.info('Loaded BackgroundMessageProxy');
   }
 
-  emit(type: string, to: ProxyEventSource, data: any): boolean {
+  emit(type: string, to: ProxyEventSource, data: any, specificHosts: string[] | undefined = undefined): boolean {
     const messagePacket: ProxyMessagePacket<any> = {
       from: ProxyEventSource.BACKGROUND,
       to: to,
@@ -18,10 +19,12 @@ export class BackgroundMessageProxy extends BaseMessageProxy {
       data: data
     }
 
+    const allowedHosts = specificHosts || chrome.runtime.getManifest().host_permissions;
+
     // Send the message to all content scripts
     chrome.tabs.query({active: true}, (tabs) => {
       for (const tab of tabs) {
-        if (tab.id && tab.url && tab.url.includes('www.tiktok.com')) {
+        if (tab.id && tab.url && matchHostnameToPatterns(new URL(tab.url).hostname, allowedHosts)) {
           chrome.tabs.sendMessage(tab.id!, messagePacket).catch(console.error);
         }
       }

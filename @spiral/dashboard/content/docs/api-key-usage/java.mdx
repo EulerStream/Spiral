@@ -1,0 +1,44 @@
+---
+title: Using API Keys in Java
+description: How to use the Euler Stream API keys in the 3rd-party Java library.
+---
+
+## Prerequisites
+
+1. You have signed up for an Euler Stream account.
+2. You have created an API key in the Euler Stream dashboard.
+3. You have installed the [`TikTokLiveJava`](https://github.com/jwdeveloper/TikTokLiveJava) library.
+
+
+## How to Use
+
+To use the Euler Stream API keys in the Node.JS library, you need to set the API key config setting with the `TikTokLiveBuilder#configure` method before building and connecting the client instance.
+Here's an example hello-world script demonstrating this:
+
+```java
+package io.github.jwdeveloper.tiktok;
+
+import java.time.Duration;
+import java.util.logging.Level;
+
+public class APIKeyExample {
+
+    public static void main(String[] args) {
+
+        TikTokLive.newClient("tv_asahi_news")
+
+            // Listen for gifts
+            .onGift((liveClient, event) -> {System.out.println("Thank you for the gift!");})
+
+            // Configure client settings
+            .configure((settings) -> {
+
+                // Set the API key
+                settings.setApiKey("YOUR_API_KEY");
+            })
+            .buildAndConnect();
+
+    }
+
+}
+```

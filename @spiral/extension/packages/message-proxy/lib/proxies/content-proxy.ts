@@ -46,7 +46,7 @@ export class ContentMessageProxy extends BaseMessageProxy {
         chrome.runtime.sendMessage(messagePacket).catch((e) => console.error("Failed Content -> Background!", e));
         break;
       case ProxyEventSource.INJECTED:
-        window.postMessage(messagePacket, "https://www.tiktok.com");
+        window.postMessage(messagePacket, "*");
         break;
       default:
         throw new Error(`Unknown event target "${messagePacket.to}"!`);
@@ -80,10 +80,7 @@ export class ContentMessageProxy extends BaseMessageProxy {
 
   }
 
-  receiveProxiedMessageFromBackground(event: any) {
-    console.log("RECEIVED PROXIED MESSAGE FROM BG", event);
-
-    const messagePacket = event.data as ProxyMessagePacket<any>;
+  receiveProxiedMessageFromBackground(messagePacket: ProxyMessagePacket<any>) {
 
     switch (messagePacket.to) {
       case ProxyEventSource.CONTENT:
@@ -93,7 +90,7 @@ export class ContentMessageProxy extends BaseMessageProxy {
         this.abstractEmitProxiedMessage(messagePacket.from, messagePacket.to, messagePacket.type, messagePacket);
         break;
       default:
-        throw new Error("Unsupported event target!");
+        throw new Error(`Unsupported event target \"${messagePacket.to}\"!`);
     }
   }
 
