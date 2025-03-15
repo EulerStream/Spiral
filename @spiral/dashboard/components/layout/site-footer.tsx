@@ -1,12 +1,8 @@
 import * as React from "react";
 import Link from "next/link";
 
-import { footerLinks, siteConfig } from "@/config/site";
-import { cn } from "@/lib/utils";
-import { ModeToggle } from "@/components/layout/mode-toggle";
-
-import { NewsletterForm } from "../forms/newsletter-form";
-import { Icons } from "../shared/icons";
+import {footerLinks} from "@/config/site";
+import {cn} from "@/lib/utils";
 
 export function SiteFooter({ className }: React.HTMLAttributes<HTMLElement>) {
   return (

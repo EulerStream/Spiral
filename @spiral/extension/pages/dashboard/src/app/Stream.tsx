@@ -15,7 +15,6 @@ const Stream = () => {
   const uniqueIdStripped = uniqueId?.replace(/^@/, '');
   document.title = `Spiral | ${uniqueId}`
   document.body.style.backgroundColor = 'black';
-
   return (
       <div className={"w-[100%] h-[100%] bg-black text-white"}>
         <WebRTCComponent/>

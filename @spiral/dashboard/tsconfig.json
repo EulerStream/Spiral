@@ -24,7 +24,11 @@
         "name": "next"
       }
     ],
-    "strictNullChecks": true
+    "strictNullChecks": true,
+    "typeRoots": [
+        "./node_modules/@types",
+        "./types"
+    ]
   },
   "include": [
     "next-env.d.ts",
@@ -32,7 +36,8 @@
     "**/*.tsx",
     ".next/types/**/*.ts",
     ".contentlayer/generated",
-    "contentlayer.config.ts"
+    "contentlayer.config.ts",
+    "./types/index.d.ts"
   ],
   "exclude": ["node_modules"]
 }

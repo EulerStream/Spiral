@@ -13,7 +13,7 @@ export default function WebRTCClient() {
   const [ws, setWs] = useState<WebSocket | null>(null);
   const {agentId} = useStorage(settingStorage)
   const sessionId = agentId;
-  const signalingServerUrl = `ws://127.0.0.1:8080?type=webrtc&sessionId=${sessionId}`;
+  const signalingServerUrl = `${import.meta.env.VITE_PUBLIC_WS_URL}?type=webrtc&sessionId=${sessionId}`;
 
   useEffect(() => {
     const wsClient = new WebSocket(signalingServerUrl);

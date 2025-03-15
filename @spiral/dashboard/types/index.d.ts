@@ -1,6 +1,13 @@
 import {User, UserRole} from "@prisma/client";
 
 import {Icons} from "@/components/shared/icons";
+import WebSocketManager from "@/api/ws/manager";
+
+declare module 'express' {
+  interface Express {
+    wsm: WebSocketManager;
+  }
+}
 
 export type SiteConfig = {
   name: string;
@@ -121,3 +128,5 @@ export type IApiKeyWithPermissions = {
   updated_at: string,
   account_id: number
 }
+
+export {};
