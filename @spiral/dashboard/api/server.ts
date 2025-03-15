@@ -5,7 +5,9 @@ import WebSocket from 'ws';
 import {router as WebcastRouter} from "./webcast/routes"
 import WebSocketManager from "@/api/ws/manager";
 
+
 const port = parseInt(process.env.PORT || '3000', 10);
+console.log(`NODE_ENV: ${process.env.NODE_ENV}`);
 const dev = process.env.NODE_ENV !== 'production';
 const app = next({dev});
 const handle = app.getRequestHandler();
@@ -46,7 +48,7 @@ app.prepare().then(() => {
     });
   });
 
-  httpServer.listen(port, () => {
-    console.log(`> Ready on http://localhost:${port}`);
+  httpServer.listen(port, '0.0.0.0', () => {
+    console.log(`> Ready on http://0.0.0.0:${port}`);
   });
 });
