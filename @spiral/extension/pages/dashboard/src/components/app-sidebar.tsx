@@ -34,7 +34,7 @@ function createSidebarGroup(title: string, items: MenuItem[]) {
   const location = useLocation();
 
   return (
-      <SidebarGroup key={title} className={"[&:not(:first-child)]:mt-4"}>
+      <SidebarGroup key={title} className={"[&:not(:first-child)]:mt-0"}>
         <SidebarGroupLabel className={"text-base font-normal flex items-center justify-center mb-4"}>
           <hr className={"flex-grow mt-1"}/>
           <h4 className={"px-4"}>{title}</h4>
@@ -52,8 +52,8 @@ function createSidebarGroup(title: string, items: MenuItem[]) {
                           className={isSelected ? "bg-brand" : ""}
                           href={item.url.startsWith("/") ? getPath(item.url) : item.url}
                       >
-                        <item.icon style={{width: "20px", height: "20px"}}/>
-                        <span className={"text-lg ml-2"}>{item.title}</span>
+                        <item.icon className={"text-white"} style={{width: "20px", height: "20px"}}/>
+                        <span className={"text-lg ml-2 text-white"}>{item.title}</span>
                       </a>
                     </SidebarMenuButton>
                   </SidebarMenuItem>
@@ -74,11 +74,11 @@ export function AppSidebar(props: IAppSidebarProps) {
 
   return (
       <Sidebar {...rest}>
-        <SidebarHeader className={"flex gap-x-3 p-3 pb-0 flex-col justify-center items-center mt-5 -mb-4"}>
-          <span className={"font-bold text-3xl font-urban inline-block text-ce"}>Euler Spiral</span>
+        <SidebarHeader className={"flex flex-row gap-x-3 p-3 pb-0  justify-center items-center mt-6"}>
           <a className={"select-none"} href={getPath("/")}>
-            <img alt={"Logo"} src={SpiralLogo} className={"select-none h-[64px] w-[64px] font-bold -mt-2 -mb-1"}/>
+            <img alt={"Logo"} src={SpiralLogo} className={"select-none h-[32px] w-[32px] font-bold -mt-[0.5px]"}/>
           </a>
+          <span className={"font-bold text-2xl font-urban inline-block text-ce mr-1"}>Euler Spiral</span>
         </SidebarHeader>
         <SidebarContent className={"p-4"}>
           {groups.filter(group => group.items.length > 0).map((group) => createSidebarGroup(group.title, group.items))}

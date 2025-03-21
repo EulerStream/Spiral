@@ -2,8 +2,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Cantata+One&family=Urbanist:ital,wght@0,100..900;1,100..900&display=swap');
 
 @config '../../tailwind.config.ts';
+/*noinspection CssInvalidAtRule*/
 @plugin 'tailwindcss-animate';
-
+/*noinspection CssInvalidAtRule*/
 @custom-variant dark (&:is(.dark *));
 
 .text-muted-fg {
@@ -24,6 +25,10 @@ button {
 
 .text-brand {
     color: var(--brand);
+}
+
+.text-brand-light {
+    color: var(--brand-light);
 }
 
 .bg-brand {
@@ -51,7 +56,8 @@ button {
 }
 
 :root {
-    --brand: #eaae1f;
+    --brand: rgb(45, 70, 162);
+    --brand-light: rgb(115, 134, 208);
     --background: oklch(1 0 0);
     --foreground: oklch(0.145 0 0);
     --card: oklch(1 0 0);

@@ -25,7 +25,7 @@ export default function PageLayout({element, title, description}: PageLayoutProp
             <header className={"w-[100%] flex"}>
               <div className={"flex-grow"}>
                 <h1 className={"text-3xl font-bold"}>{title}</h1>
-                <h2 className={"text-lg text-brand"}>{description}</h2>
+                <h2 className={"text-lg text-brand-light"}>{description}</h2>
                 <Breadcrumbs className={"mt-2"}/>
               </div>
               <div>
