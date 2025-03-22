@@ -39,9 +39,9 @@ const Settings = () => {
             />
 
             {
-              settings.agentEnabled && (
+                settings.agentEnabled && (
                     <InputWithText
-                        containerProps={{className: "ml-6 mt-4"}}
+                        containerProps={{className: 'ml-6 mt-4'}}
                         text={"Agent Id"}
                         subtext={"The Agent Id to use when connecting via TikTokLive."}
                         value={settings.agentId}
@@ -54,6 +54,27 @@ const Settings = () => {
                             Reset
                           </Button>
                         }
+                    />
+                )
+            }
+          </div>
+
+          <div className={"bg-accent-darker p-4 rounded-xl mt-4 max-w-fit min-w-[600px]"}>
+            <CheckboxWithText
+                checked={settings.widgetDevMode}
+                onClick={async () => settingStorage.updateSettings({widgetDevMode: !settings.widgetDevMode})}
+                text={"Widget Dev Mode"}
+                subtext={"Enable this to use widgets in development mode."}
+            />
+
+            {
+                settings.widgetDevMode && (
+                    <InputWithText
+                        containerProps={{className: 'ml-6 mt-4'}}
+                        text={"Widget Url"}
+                        subtext={"The Url the widget server is on."}
+                        value={settings.widgetDevUrl}
+                        onChange={(e) => settingStorage.updateSettings({widgetDevUrl: e.target.value})}
                     />
                 )
             }

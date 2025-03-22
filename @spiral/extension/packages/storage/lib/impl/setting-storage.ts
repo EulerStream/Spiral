@@ -5,11 +5,15 @@ import type {BaseStorage} from '../base/types';
 export type StoredSettings = {
   agentEnabled: boolean;
   agentId: string;
+  widgetDevMode: boolean;
+  widgetDevUrl: string;
 };
 
 const DefaultSettings: StoredSettings = {
   agentEnabled: false,
   agentId: '',
+  widgetDevMode: false,
+  widgetDevUrl: 'http://127.0.0.1:5173',
 };
 
 type SettingStorage = BaseStorage<StoredSettings> & {

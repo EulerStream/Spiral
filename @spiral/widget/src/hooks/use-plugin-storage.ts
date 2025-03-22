@@ -2,7 +2,7 @@ import {useEffect, useState} from "react";
 
 export type ValueOrUpdate<D> = D | ((prev: D) => Promise<D> | D);
 
-export type PluginStorage<D> = {
+export type UsePluginStorage<D> = {
   get: () => Promise<D>;
   set: (value: ValueOrUpdate<D>) => Promise<void>;
   subscribe: (listener: (value: D) => void | Promise<void>) => () => void;
@@ -47,7 +47,7 @@ window.addEventListener('message', (event: MessageEvent<PluginStorageStateUpdate
 export function createPluginStorage<D>(
     storageKey: string,
     fallback: D
-): PluginStorage<D> {
+): UsePluginStorage<D> {
 
   const get = async (): Promise<D> => {
     return await new Promise<D>((resolve) => {
@@ -92,7 +92,7 @@ export function createPluginStorage<D>(
 }
 
 /** React hook for using plugin storage within UI **/
-export function usePluginStorage<D>(storage: PluginStorage<D>): D | undefined {
+export function usePluginStorage<D>(storage: UsePluginStorage<D>): D | undefined {
   const [state, setState] = useState<D | undefined>(undefined);
 
   useEffect(() => {

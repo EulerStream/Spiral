@@ -9,7 +9,8 @@
     "module": "ESNext",
     "target": "ESNext",
     "moduleResolution": "Node",
-    "strict": true
+    "strict": true,
+    "jsx": "react-jsx"
   },
   "include": [
     "src"

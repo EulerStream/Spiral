@@ -1,7 +1,7 @@
 import {withErrorBoundary, withSuspense} from '@extension/shared';
-import WebRTCComponent from "@src/components/webrtc-connector";
 import {useParams, useSearchParams} from "react-router";
 import {getPath} from "@src/lib/utils";
+import WebRtcConnectionMonitor from "@src/components/rtc-connection";
 
 const Stream = () => {
   const {uniqueId} = useParams();
@@ -17,7 +17,7 @@ const Stream = () => {
   document.body.style.backgroundColor = 'black';
   return (
       <div className={"w-[100%] h-[100%] bg-black text-white"}>
-        <WebRTCComponent/>
+        <WebRtcConnectionMonitor/>
         {/*
         <LiveVideoEmbed
             uniqueId={uniqueIdStripped}

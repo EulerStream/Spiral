@@ -1,0 +1,20 @@
+.App {
+    max-width: 600px;
+    max-height: 350px;
+    width: 100%;
+    aspect-ratio: 9/1;
+    transform: skewX(-15deg);
+    background-color: rgb(94, 169, 226);
+    color: white;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    column-gap: 20px;
+}
+
+
+.App > * {
+    transform: skewX(15deg);
+}
+
