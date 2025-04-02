@@ -1,6 +1,6 @@
 import {IWebcastLikeMessage, useTikTokEvent} from "@spiral/widget";
-import useLikeStore from "../hooks/like-store.ts";
-import styles from './App.module.css';
+import useLikeStore from "../hooks/like-store";
+import './App.css';
 
 function App() {
   const {likes, addLikes} = useLikeStore();
@@ -12,7 +12,7 @@ function App() {
   useTikTokEvent("WebcastLikeMessage", onLikeEvent);
 
   return (
-      <div className={styles.App}>
+      <div className={"App"}>
         <h3 className={'text-3xl font-bold'}>Like-O-Meter</h3>
         <span className={'bg-white text-black text-center px-4 py-1 rounded-lg text-2xl font-bold'}>{likes} Like{likes === 1 ? '' : 's'}</span>
       </div>

@@ -36,15 +36,7 @@ function createModifiedXFrameOptionsRule(): Rule {
 }
 
 /** Rather than overriding the CSP naively, we dynamically set it to maintain browser security. */
-function createModifiedCspRule(cspHeader?: HttpHeader): Rule {
-
-  // Extra default-src
-  let modifiedCsp = cspHeader?.value
-      ? (cspHeader.value.replace(/default-src/g, `default-src ${EXTRA_FRAME_SOURCES.join(' ')}`))
-      : `default-src ${EXTRA_FRAME_SOURCES.join(' ')}`;
-
-  // if frame-ancestors is set, remove it
-  modifiedCsp = modifiedCsp.replace(/frame-ancestors [^;]*;?/g, '');
+function createModifiedCspRule(): Rule {
 
   Logger.info("Overriding TikTok CSP Header");
 
@@ -60,8 +52,7 @@ function createModifiedCspRule(cspHeader?: HttpHeader): Rule {
       responseHeaders: [
         {
           header: 'content-security-policy',
-          operation: HeaderOperation.SET,
-          value: modifiedCsp,
+          operation: HeaderOperation.REMOVE,
         },
       ],
     },
@@ -70,11 +61,11 @@ function createModifiedCspRule(cspHeader?: HttpHeader): Rule {
 
 
 /** Update the CSP rule with the new CSP header. */
-function updateCspRule(cspHeader?: HttpHeader) {
-  const cspRule: Rule = createModifiedCspRule(cspHeader);
+function updateCspRule() {
+  const cspRule: Rule = createModifiedCspRule();
   const xFrameOptionsRule: Rule = createModifiedXFrameOptionsRule();
 
-  chrome.declarativeNetRequest.updateDynamicRules({
+  return chrome.declarativeNetRequest.updateDynamicRules({
     removeRuleIds: [cspRule.id, xFrameOptionsRule.id],
     addRules: [cspRule, xFrameOptionsRule]
   });
@@ -83,6 +74,9 @@ function updateCspRule(cspHeader?: HttpHeader) {
 
 /** When we receive the initial headers from www.tiktok.com, we can modify the rule. */
 export default function AddModifyCspRule() {
+  updateCspRule().then(() => {
+    Logger.info("Successfully updated CSP Rule");
+  });
 
   const onHeadersReceived = (details: chrome.webRequest.WebResponseHeadersDetails) => {
     const responseHeaders = details.responseHeaders || [];
@@ -94,12 +88,11 @@ export default function AddModifyCspRule() {
     }
 
     const cspHeader = responseHeaders.find(header => header.name.toLowerCase() === 'content-security-policy');
-    updateCspRule(cspHeader);
   }
 
   chrome.webRequest.onHeadersReceived.addListener(
       onHeadersReceived,
-      {urls: ["*://*.tiktok.com/*"], types: ["main_frame"]},
+      {urls: ["*://*.tiktok.com/*"], types: ["main_frame", "sub_frame"]},
       ['responseHeaders']
   );
 

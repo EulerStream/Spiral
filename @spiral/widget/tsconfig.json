@@ -10,7 +10,8 @@
     "target": "ESNext",
     "moduleResolution": "Node",
     "strict": true,
-    "jsx": "react-jsx"
+    "jsx": "react-jsx",
+    "allowSyntheticDefaultImports": true
   },
   "include": [
     "src"

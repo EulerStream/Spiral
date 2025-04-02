@@ -1,5 +1,5 @@
-import {PluginEventType, SpecificPluginEvent} from "../types/plugin-events";
 import {useEffect} from "react";
+import {PluginEventType, SpecificPluginEvent} from "../types";
 
 /**
  * A hook to listen for plugin events from the content script.

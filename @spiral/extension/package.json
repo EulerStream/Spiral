@@ -39,6 +39,7 @@
     "shadcn": "2.4.0-canary.12",
     "sonner": "^2.0.1",
     "ts-proto": "^2.6.1",
+    "vite-plugin-node-polyfills": "^0.23.0",
     "wire": "link:@bufbuild/protobuf/wire"
   },
   "devDependencies": {

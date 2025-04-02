@@ -7,7 +7,7 @@ import Logger from "@extension/shared/lib/logger";
 import {Button} from "@src/components/ui/button";
 
 
-function uuid4(): string {
+export function spiralUuid4(): string {
   return "spiral-" + "10000000-1000-4000-8000-100000000000".replace(/[018]/g, c =>
       (+c ^ crypto.getRandomValues(new Uint8Array(1))[0] & 15 >> +c / 4).toString(16)
   );
@@ -15,7 +15,7 @@ function uuid4(): string {
 
 const ResetAgentId = async () => {
   Logger.info('Generated new agent ID!');
-  await settingStorage.updateSettings({agentId: uuid4()});
+  await settingStorage.updateSettings({agentId: spiralUuid4()});
 }
 
 const Settings = () => {

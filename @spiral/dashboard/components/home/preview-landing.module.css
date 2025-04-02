@@ -1,8 +1,0 @@
-.phoneImage {
-    transition: transform 0.5s;
-}
-
-.phoneImage:hover {
-    transform: scale(1.1);
-}
-
